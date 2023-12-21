@@ -32,7 +32,7 @@
 					<!-- SUCHEN -->
 					<div class="d-flex w-100">
 						<input type="text" class="form-control" v-model="search" placeholder="Buchtitel suchen"/>
-						<button type="button" class="btn btn-dark ml-1" @click=filter()></button>
+						<button type="button" class="btn btn-dark ml-1" @click=filter()>Suchen</button>
 					</div>
 
 					<!-- KATALOG -->
@@ -80,7 +80,7 @@
 								</span>
 							</li>
 						</ul>
-						<h6> Gesamtpreis {{ cart.gesamtpreis }}€ </h6>
+						<h6> Gesamtpreis {{ cart.gesamtpreis.toFixed(2) }}€ </h6>
 						<h6> Gesamtanzahl {{ cart.gesamtanzahl }} </h6>
 						<form action="checkout.php" method="post">
 							<span v-for="product in cart.products">
