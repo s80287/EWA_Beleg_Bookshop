@@ -41,17 +41,16 @@
 				order(index){
 					console.log("ORDER " + index + " " + this.products[index].Produkttitel + " starts");
 					if (this.cart["products"].includes(this.products[index])) {
-						this.products[index].Lagerbestand++
+						this.products[index].Lagerbestand++;
 					}
 					else {
 						this.products[index].Lagerbestand = 1;
 						this.cart["products"].push(this.products[index]);
 					}
 					this.cart.gesamtanzahl++;
-					this.cart.gesamtpreis+= parseFloat(this.products[index].PreisBrutto);
+					this.cart.gesamtpreis += parseFloat(this.products[index].PreisBrutto);
 					console.log("ORDER " + index + " " + this.products[index].Produkttitel + " finishes");
 				},
-				// TODO: change functions increase(), decrease() with cart
 				increase(index)
 				{
 					console.log("INCREASE CART " + index + ' ' + this.cart.products[index].Produkttitel + " starts");
@@ -71,6 +70,12 @@
 						this.cart.gesamtanzahl--;
 						this.cart.gesamtpreis-= parseFloat(this.cart.products[index].PreisBrutto);
 					}
+					
+					// delete article if quantity decreased to 0
+					if (this.cart.products[index].Lagerbestand == 0) {
+						this.cart["products"].splice(index, 1);
+					}
+					
 					
 					console.log("DECREASE CART " + index + ' ' + this.cart.products[index].Produkttitel + " finishes");
 				},
